@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Unicode Box Drawing Script</title>
+  <style>
+    .style-selection {
+      float: left;
+    }
+    .arrow-key-selection {
+      float: left;
+      margin-left: 1em;
+    }
+  </style>
+</head>
+<body>
+  <textarea id='thearea' rows='20' cols='80'></textarea>
+  <form name="boxdrawing">
+    <div class="style-selection">
+      Style:<br>
+      <input type="radio" value="" name="style" id="style-off" checked><label
+        for="style-off"> Off</label><br>
+      <input type="radio" value="r" name="style" id="style-regular"><label
+        for="style-regular"> Regular</label><br>
+      <input type="radio" value="b" name="style" id="style-bold"><label
+        for="style-bold"> Bold</label><br>
+      <input type="radio" value="d" name="style" id="style-double"><label
+        for="style-double"> Double</label><br>
+      <!--
+      <input type="radio" value="h" name="style" id="style-dashed"><label
+        for="style-dashed"> Dashed</label> (Not Implemented)<br>
+      <input type="radio" value="t" name="style" id="style-dotted"><label
+        for="style-dotted"> Dotted</label> (Not Implemented)<br>
+      -->
+      <input type="radio" value="_" name="style" id="style-space"><label
+        for="style-space"> Erase</label>
+    </div>
+    <div class="arrow-key-selection">
+      Arrow Key +<br>
+      <input type="checkbox" value="alt" name="arrowkey" id="arrowkey-alt"
+        ><label for="arrowkey-alt"> Alt</label><br>
+      <input type="checkbox" value="ctrl" name="arrowkey" id="arrowkey-ctrl"
+        ><label for="arrowkey-ctrl"> Ctrl</label><br>
+      <input type="checkbox" value="shift" name="arrowkey" id="arrowkey-shift"
+        ><label for="arrowkey-shift"> Shift</label>
+    </div>
+    <div style="clear: both;"></div>
+  </form>
+  <script src='jquery-1.4.4.min.js'></script>
+  <script src='boxdrawing.js' charset='utf-8'></script>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      $('textarea').keypress(function (evt) {
+        if (evt.keyCode < 37 || evt.keyCode > 40)
+          return;
+        var i;
+        var form = document.forms['boxdrawing'];
+
+        var group = form.elements['style'];
+        var style = "";
+        for (i = 0; i < group.length; i++) {
+          if (group[i].checked) {
+            style = group[i].value;
+            break;
+          }
+        }
+
+        if (style) {
+          group = form.elements['arrowkey'];
+          for (i = 0; i < group.length; i++) {
+            var checked = !!group[i].checked;
+            switch (group[i].value) {
+              case "alt":
+                if (checked ^ !!evt.altKey)
+                  return;
+                break;
+              case "ctrl":
+                if (checked ^ !!evt.ctrlKey)
+                  return;
+                break;
+              case "shift":
+                if (checked ^ !!evt.shiftKey)
+                  return;
+                break;
+            }
+          }
+          var direction = evt.keyCode - 37;
+          DrawBox(evt.target, style, direction);
+          return false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
