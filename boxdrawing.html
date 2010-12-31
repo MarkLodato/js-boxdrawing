@@ -11,9 +11,32 @@
       float: left;
       margin-left: 1em;
     }
+    textarea {
+      width: 100%;
+      margin-bottom: 1em;
+    }
+    #content {
+      max-width: 50em;
+      padding: 1px 2em 4em 2em;
+      margin: 0 auto;
+      background: #d0d8f0;
+    }
+    body, html {
+      margin: 1em;
+      padding: 0;
+      background: #f0f0ff;
+    }
   </style>
 </head>
 <body>
+<div id='content'>
+  <h1>Javascript Box Drawing Demo</h1>
+  <p>This a demo for the <a
+    href='http://github.com/MarkLodato/js-boxdrawing'>js-boxdrawing</a>
+  library.  Turn on the drawing feature by selecting a style other than "Off".
+  Then, with the cursor in the text area below, press the arrow keys (plus any
+  modifers selected) to produce Unicode box drawing characters.
+  <div id="form">
   <textarea id='thearea' rows='20' cols='80'></textarea>
   <form name="boxdrawing">
     <div class="style-selection">
@@ -46,6 +69,8 @@
     </div>
     <div style="clear: both;"></div>
   </form>
+  </div>
+</div>
   <script src='jquery-1.4.4.min.js'></script>
   <script src='boxdrawing.js' charset='utf-8'></script>
   <script type='text/javascript'>
