@@ -17,7 +17,7 @@
   <textarea id='thearea' rows='20' cols='80'></textarea>
   <form name="boxdrawing">
     <div class="style-selection">
-      Style:<br>
+      Style (CTRL-B):<br>
       <input type="radio" value="" name="style" id="style-off" checked><label
         for="style-off"> Off</label><br>
       <input type="radio" value="r" name="style" id="style-regular"><label
@@ -88,6 +88,26 @@
           DrawBox(evt.target, style, direction);
           return false;
         }
+      });
+      $('textarea').keydown(function (evt) {
+        if (!evt.ctrlKey || evt.which != 66 /* B */)
+          return;
+        var form = document.forms['boxdrawing'];
+        var group = form.elements['style'];
+        var checked = -1;
+        for (i = 0; i < group.length; i++) {
+          if (group[i].checked) {
+            checked = i;
+            break;
+          }
+        }
+        if (checked < 0 || checked >= group.length-1) {
+          checked = 0;
+        } else {
+          checked++;
+        }
+        group[checked].checked = true;
+        return false;
       });
     });
   </script>
