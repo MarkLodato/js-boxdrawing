@@ -75,7 +75,7 @@
   <script src='boxdrawing.js' charset='utf-8'></script>
   <script type='text/javascript'>
     $(document).ready(function() {
-      $('textarea').keypress(function (evt) {
+      $('textarea').keydown(function (evt) {
         if (evt.keyCode < 37 || evt.keyCode > 40)
           return;
         var i;
