@@ -21,7 +21,7 @@
  *
  * TODO things to improve:
  *    - better handling of double vs regular
- *        - in particular, fall back to regular if doulbe is not available
+ *        - in particular, fall back to regular if double is not available
  *
  *        0123456789abcdef | │╎┆┊╵╷╽ ─ ╴╶ ╼ ╌ ┄ ┈ | Common elements:
  * U+250x ─━│┃┄┅┆┇┈┉┊┋┌┍┎┏ | ┃╏┇┋╹╻╿ ━ ╸╺ ╾ ╍ ┅ ┉ |
