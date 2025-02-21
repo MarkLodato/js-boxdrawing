@@ -8,7 +8,7 @@ easy for users to draw Unicode box art in HTML textareas.
 
 ### Demo
 
-See <http://marklodato.github.com/js-boxdrawing/> for a demo.
+See <https://marklodato.github.io/js-boxdrawing> for a demo.
 
 
 ### License
