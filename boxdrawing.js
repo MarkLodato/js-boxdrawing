@@ -149,6 +149,13 @@ DrawBox = function (elem, style, direction)
         } else {
           var prop_r = prop.substr(0,direction)
             + style + prop.substr(direction+1);
+          // Double lines have no half-line glyphs, so erasing one arm of a
+          // double-line corner (e.g. ╗) left a lone double arm with no
+          // character, and the edit was silently dropped. Fall back to the
+          // regular half-line, so the corner degrades like a regular one.
+          if (style == '_' && typeof DrawBox.reverse[prop_r] == "undefined") {
+            prop_r = prop_r.replace(/d/g, 'r');
+          }
         }
         var new_character = DrawBox.reverse[prop_r];
         if (typeof new_character != "undefined") {
